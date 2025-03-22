@@ -16,53 +16,54 @@ interface TechStack {
 type ContactType = 'github' | 'linkedIn' | 'medium' | 'email';
 
 const techStack: TechStack = {
-    devOps: [
-        'GitLab',
-        'GitHub',
-        'Cloudflare',
-        'Docker'
+    aiml: [
+        'LLMs & Generative AI',
+        'RAG (Retrieval-Augmented Generation)',
+        'Embeddings & Vector Databases',
+        'Prompt Engineering',
+        'Fine-tuning',
+        'Transformers',
+        'PyTorch',
+        'TensorFlow',
     ],
-    frontend: [
-        'Angular',
-        'JavaScript',
-        'TypeScript',
-        'TailwindCSS',
-        'PrimeNG',
-        'Astro',
-        'Ionic',
-        'Stencil',
-        'Capacitor',
-        'SCSS',
-        'Markdown',
-        'WordPress'
+    cloudService: [
+        'Cloud Platforms (AWS, GCP, Azure)',
+        'ML Service Deployment',
+        'Containerization',
+        'Serverless Computing'
     ],
-    backend: [
-        'Supabase',
-        'Node.js',
-        'Bun',
-        'Deno',
-        'PostgreSQL',
-        'MySQL',
-        'S3 Storage',
-        'Resend'
+    dataTools: [
+        'Data Visualization',
+        'SQL & NoSQL Databases',
+        'Data Analysis',
+        'Python Data Stack',
+        'BI Tools'
+    ],
+    development: [
+        'Web Development',
+        'JavaScript/TypeScript',
+        'Frontend Frameworks',
+        'REST APIs',
+        'Git Version Control'
     ]
 };
 
 // Developer profile
-const me: AI Enginner = {
+const me: Developer = {
     name: 'Yasmine Cheng',
     skills: [
-        ...techStack.devOps,
-        ...techStack.backend,
-        ...techStack.frontend
+        ...techStack.aiml,
+        ...techStack.cloudService,
+        ...techStack.dataTools,
+        ...techStack.development
     ],
     interests: [
-        'Open Source',
-        'Security',
-        'Privacy',
-        'Performance',
-        'Self-Hosting',
-        'Networking'
+        'Natural Language Processing',
+        'Generative Models',
+        'Deep Learning',
+        'Cloud Computing',
+        'Data Engineering',
+        'Web Development',
     ]
 };
 
