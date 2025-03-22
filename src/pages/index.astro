@@ -56,10 +56,10 @@ import ContentProjects from '../components/ContentProjects.astro';
                             contentName="about.ts"
                         />
 
-                        <ContentLink
+                        <!-- <ContentLink
                             contentId="tab2"
                             contentName="projects.md"
-                        />
+                        /> -->
 
                     </div>
                     <!-- End: Tab bar -->
@@ -74,9 +74,9 @@ import ContentProjects from '../components/ContentProjects.astro';
                         <!-- End: About content -->
 
                         <!-- Start: Projects content -->
-                        <div id="content2" class="tab-content">
+                        <!-- <div id="content2" class="tab-content">
                             <ContentProjects />
-                        </div>
+                        </div> -->
                         <!-- End: Projects content -->
 
                     </div>
@@ -129,12 +129,12 @@ import ContentProjects from '../components/ContentProjects.astro';
     }
 
     /* When tab2 is checked, show content2 and highlight its tab */
-    #tab2:checked ~ * #content2 {
+    /* #tab2:checked ~ * #content2 {
         @apply block opacity-100;
     }
 
     #tab2:checked ~ .flex .tab-link:nth-child(2) {
         @apply border-b-2 border-b-primary;
-    }
+    } */
 
 </style>
