@@ -13,7 +13,7 @@ interface TechStack {
    frontend: string[];
 };
 
-type ContactType = 'github' | 'twitter' | 'linkedIn' | 'xing' | 'email';
+type ContactType = 'github' | 'linkedIn' | 'medium' | 'email';
 
 const techStack: TechStack = {
     devOps: [
@@ -49,8 +49,8 @@ const techStack: TechStack = {
 };
 
 // Developer profile
-const me: Developer = {
-    name: 'Dejan Vi.',
+const me: AI Enginner = {
+    name: 'Yasmine Cheng',
     skills: [
         ...techStack.devOps,
         ...techStack.backend,
@@ -70,15 +70,13 @@ const me: Developer = {
 const contact = (type: ContactType): string => {
     switch (type) {
         case 'github':
-            return 'https://github.com/devidevio';
-        case 'twitter':
-            return 'https://x.com/devidev_io';
+            return 'https://github.com/Yasmine-Cheng';
         case 'linkedIn':
-            return 'https://www.linkedin.com/in/dejan-vi';
-        case 'xing':
-            return 'https://www.xing.com/profile/Dejan_Vintonjiv';
+            return 'https://www.linkedin.com/in/yasminecheng916/';
+        case 'medium':
+            return 'https://medium.com/@yaszh';
         case 'email':
-            return 'hi@devidev.io';
+            return 'mian12080916@gmail.com';
         default:
             return 'Send fax.';
     }
