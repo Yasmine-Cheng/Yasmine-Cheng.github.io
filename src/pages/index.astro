@@ -7,6 +7,7 @@ import Contact from '../components/Contact.astro';
 import ContentLink from '../components/ContentLink.astro';
 import ContentCode from '../components/ContentAbout.astro';
 import ContentProjects from '../components/ContentProjects.astro';
+import ContentCertification from '../components/ContentCertification.astro';
 ---
 
 <Layout>
@@ -41,12 +42,19 @@ import ContentProjects from '../components/ContentProjects.astro';
                         checked
                     />
 
-                    <!-- <input
+                    <input
                         type="radio"
                         id="tab2"
                         name="tabs"
                         class="tab-radio"
-                    /> -->
+                    />
+
+                    <input
+                        type="radio"
+                        id="tab3"
+                        name="tabs"
+                        class="tab-radio"
+                    />
 
                     <!-- Start: Tab bar -->
                     <div class="flex bg-black border-b border-gray-600 sticky top-0 z-10">
@@ -56,10 +64,15 @@ import ContentProjects from '../components/ContentProjects.astro';
                             contentName="about.ts"
                         />
 
-                        <!-- <ContentLink
+                        <ContentLink
                             contentId="tab2"
                             contentName="projects.md"
-                        /> -->
+                        />
+
+                        <ContentLink
+                            contentId="tab3"
+                            contentName="certifications.md"
+                        />
 
                     </div>
                     <!-- End: Tab bar -->
@@ -74,10 +87,16 @@ import ContentProjects from '../components/ContentProjects.astro';
                         <!-- End: About content -->
 
                         <!-- Start: Projects content -->
-                        <!-- <div id="content2" class="tab-content">
+                        <div id="content2" class="tab-content">
                             <ContentProjects />
-                        </div> -->
+                        </div>
                         <!-- End: Projects content -->
+
+                        <!-- Start: Certifications content -->
+                        <div id="content3" class="tab-content">
+                            <ContentCertification />
+                        </div>
+                        <!-- End: Certifications content -->
 
                     </div>
                     <!-- End: Tab content -->
@@ -129,12 +148,21 @@ import ContentProjects from '../components/ContentProjects.astro';
     }
 
     /* When tab2 is checked, show content2 and highlight its tab */
-    /* #tab2:checked ~ * #content2 {
+    #tab2:checked ~ * #content2 {
         @apply block opacity-100;
     }
 
     #tab2:checked ~ .flex .tab-link:nth-child(2) {
         @apply border-b-2 border-b-primary;
-    } */
+    }
+
+    /* When tab2 is checked, show content2 and highlight its tab */
+    #tab3:checked ~ * #content3 {
+        @apply block opacity-100;
+    }
+
+    #tab3:checked ~ .flex .tab-link:nth-child(3) {
+        @apply border-b-2 border-b-primary;
+    }
 
 </style>
