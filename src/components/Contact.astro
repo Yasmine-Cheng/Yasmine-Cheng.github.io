@@ -41,6 +41,13 @@ import Socials from './Socials.astro';
         }, speed);
     }
 
+    // 顯示整句文字函數
+    function showText(element: HTMLElement, text: string, callback?: () => void): void {
+        element.textContent = text;
+        element.classList.remove('hidden');
+        if (callback) callback();
+    }
+
     // 獲取元素
     const commandElement = document.querySelector('.typing-command') as HTMLElement;
     const initTextElement = document.querySelector('.init-text') as HTMLElement;
@@ -53,19 +60,19 @@ import Socials from './Socials.astro';
     const readyText = 'Ready to connect.';
     const waitingText = 'Waiting for contact request...';
 
-    // 執行打字動畫序列
+    // 執行動畫序列
     document.addEventListener('DOMContentLoaded', () => {
-        // 先打出命令
+        // 先打出命令（字元依序出現）
         typeText(commandElement, commandText, 100, () => {
-            // 命令打完後，顯示初始化文字
+            // 命令打完後，顯示初始化文字（整句顯示）
             setTimeout(() => {
-                typeText(initTextElement, initText, 50, () => {
-                    // 初始化文字顯示後，顯示準備就緒文字
+                showText(initTextElement, initText, () => {
+                    // 初始化文字顯示後，顯示準備就緒文字（整句顯示）
                     setTimeout(() => {
-                        typeText(readyTextElement, readyText, 50, () => {
-                            // 準備就緒文字顯示後，顯示等待連接文字
+                        showText(readyTextElement, readyText, () => {
+                            // 準備就緒文字顯示後，顯示等待連接文字（整句顯示）
                             setTimeout(() => {
-                                typeText(waitingTextElement, waitingText, 50);
+                                showText(waitingTextElement, waitingText);
                             }, 500);
                         });
                     }, 500);
