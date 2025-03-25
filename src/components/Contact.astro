@@ -3,28 +3,83 @@ import Socials from './Socials.astro';
 ---
 
 <div>
-
     <!-- Start: Terminal -->
     <div class="mt-6 bg-black rounded-lg p-4 border border-gray-600 text-xs">
-
         <div class="flex items-center mb-2">
             <span class="text-primary mr-2">$</span>
-            <span class="text-gray-100">npx connect</span>
+            <span class="text-gray-100 typing-command"></span>
         </div>
 
         <div class="mt-2 text-gray-400">
-            Initializing...
-            <br />
-            Ready to connect.
-            <br />
-            Waiting for contact request...
+            <div class="terminal-line init-text hidden"></div>
+            <div class="terminal-line ready-text hidden"></div>
+            <div class="terminal-line waiting-text hidden"></div>
         </div>
-
     </div>
     <!-- End: Terminal -->
 
     <!-- Start: Social Links -->
     <Socials />
     <!-- End: Social Links -->
-
 </div>
+
+<script>
+    // 打字效果函數
+    function typeText(element: HTMLElement, text: string, speed: number, callback?: () => void): void {
+        let i = 0;
+        element.textContent = '';
+        element.classList.remove('hidden');
+        
+        const typing = setInterval(() => {
+            if (i < text.length) {
+                element.textContent += text.charAt(i);
+                i++;
+            } else {
+                clearInterval(typing);
+                if (callback) callback();
+            }
+        }, speed);
+    }
+
+    // 獲取元素
+    const commandElement = document.querySelector('.typing-command') as HTMLElement;
+    const initTextElement = document.querySelector('.init-text') as HTMLElement;
+    const readyTextElement = document.querySelector('.ready-text') as HTMLElement;
+    const waitingTextElement = document.querySelector('.waiting-text') as HTMLElement;
+
+    // 設置要顯示的文字
+    const commandText = 'npx connect';
+    const initText = 'Initializing...';
+    const readyText = 'Ready to connect.';
+    const waitingText = 'Waiting for contact request...';
+
+    // 執行打字動畫序列
+    document.addEventListener('DOMContentLoaded', () => {
+        // 先打出命令
+        typeText(commandElement, commandText, 100, () => {
+            // 命令打完後，顯示初始化文字
+            setTimeout(() => {
+                typeText(initTextElement, initText, 50, () => {
+                    // 初始化文字顯示後，顯示準備就緒文字
+                    setTimeout(() => {
+                        typeText(readyTextElement, readyText, 50, () => {
+                            // 準備就緒文字顯示後，顯示等待連接文字
+                            setTimeout(() => {
+                                typeText(waitingTextElement, waitingText, 50);
+                            }, 500);
+                        });
+                    }, 500);
+                });
+            }, 300);
+        });
+    });
+</script>
+
+<style>
+    .terminal-line {
+        margin-bottom: 4px;
+    }
+    .hidden {
+        display: none;
+    }
+</style>
