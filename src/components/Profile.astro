@@ -34,16 +34,64 @@ const profile = {
             </p>
 
             <p class="flex items-center justify-center sm:justify-start text-sm text-gray-400">
-                <svg class="-mt-0.5 inline mr-2"fill=none height=14 stroke=currentColor stroke-linecap=round stroke-linejoin=round stroke-width=2 viewBox="0 0 24 24"width=14 xmlns=http://www.w3.org/2000/svg><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx=12 cy=10 r=3></circle></svg>
-                {profile.location}
+                <svg class="-mt-0.5 inline mr-2" fill=none height=14 stroke=currentColor stroke-linecap=round stroke-linejoin=round stroke-width=2 viewBox="0 0 24 24" width=14 xmlns=http://www.w3.org/2000/svg><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx=12 cy=10 r=3></circle></svg>
+                <a 
+                    href="https://www.google.com/maps?q=Taipei,Taiwan" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    class="location-link hover:text-primary transition-colors"
+                >
+                    {profile.location}
+                </a>
             </p>
 
         </div>
 
     </div>
 
-    <p class="text-sm leading-relaxed mt-4 text-gray-400 text-justify">
+    <p class="text-sm leading-relaxed mt-4 text-gray-400">
         {profile.description}
     </p>
 
 </div>
+
+<style>
+    .location-link {
+        position: relative;
+    }
+    
+    .location-link::before {
+        content: "";
+        position: absolute;
+        top: calc(100% + 10px);
+        left: 50%;
+        transform: translateX(-50%);
+        width: 160px;  /* 調整寬度，確保保持原比例 */
+        height: 228px; /* 按原比例計算高度：(1139/800)*160 ≈ 228 */
+        background-image: url('/img/taipei-taiwan-map.jpg'); /* 您的地圖圖片 */
+        background-size: contain; /* 確保圖片完整顯示 */
+        background-repeat: no-repeat;
+        background-position: center;
+        border-radius: 4px;
+        border: 2px solid #F43F5E;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s, visibility 0.3s;
+        pointer-events: none;
+        z-index: 10;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    
+    .location-link:hover::before {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    /* 添加媒體查詢，在小屏幕上調整位置 */
+    @media (max-width: 640px) {
+        .location-link::before {
+            left: 0;
+            transform: translateX(0);
+        }
+    }
+</style>

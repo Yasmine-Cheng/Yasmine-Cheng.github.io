@@ -42,12 +42,12 @@ import ContentCertification from '../components/ContentCertification.astro';
                         checked
                     />
 
-                    <input
+                    <!-- <input
                         type="radio"
                         id="tab2"
                         name="tabs"
                         class="tab-radio"
-                    />
+                    /> -->
 
                     <input
                         type="radio"
@@ -64,10 +64,10 @@ import ContentCertification from '../components/ContentCertification.astro';
                             contentName="about.ts"
                         />
 
-                        <ContentLink
+                        <!-- <ContentLink
                             contentId="tab2"
                             contentName="projects.md"
-                        />
+                        /> -->
 
                         <ContentLink
                             contentId="tab3"
@@ -87,9 +87,9 @@ import ContentCertification from '../components/ContentCertification.astro';
                         <!-- End: About content -->
 
                         <!-- Start: Projects content -->
-                        <div id="content2" class="tab-content">
+                        <!-- <div id="content2" class="tab-content">
                             <ContentProjects />
-                        </div>
+                        </div> -->
                         <!-- End: Projects content -->
 
                         <!-- Start: Certifications content -->
@@ -148,13 +148,13 @@ import ContentCertification from '../components/ContentCertification.astro';
     }
 
     /* When tab2 is checked, show content2 and highlight its tab */
-    #tab2:checked ~ * #content2 {
+    /* #tab2:checked ~ * #content2 {
         @apply block opacity-100;
     }
 
     #tab2:checked ~ .flex .tab-link:nth-child(2) {
         @apply border-b-2 border-b-primary;
-    }
+    } */
 
     /* When tab2 is checked, show content2 and highlight its tab */
     #tab3:checked ~ * #content3 {

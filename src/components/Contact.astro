@@ -63,7 +63,7 @@ import Socials from './Socials.astro';
     // 執行動畫序列
     document.addEventListener('DOMContentLoaded', () => {
         // 先打出命令（字元依序出現）
-        typeText(commandElement, commandText, 100, () => {
+        typeText(commandElement, commandText, 180, () => {
             // 命令打完後，顯示初始化文字（整句顯示）
             setTimeout(() => {
                 showText(initTextElement, initText, () => {
@@ -73,11 +73,11 @@ import Socials from './Socials.astro';
                             // 準備就緒文字顯示後，顯示等待連接文字（整句顯示）
                             setTimeout(() => {
                                 showText(waitingTextElement, waitingText);
-                            }, 1500);
+                            }, 2000);
                         });
-                    }, 700);
+                    }, 1400);
                 });
-            }, 900);
+            }, 1500);
         });
     });
 </script>
