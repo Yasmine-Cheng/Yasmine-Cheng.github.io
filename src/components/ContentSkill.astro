@@ -1,116 +1,157 @@
 ---
-interface Skill {
+interface SkillIcon {
   name: string;
-  details: {
-    issueOrganization: string;
-    issuedDate: string;
-    expiredDate: string;
-  };
-  imageSrc?: string;
-  link: {
-    url?: string;
-    target?: string;
-    title?: string;
-    buttonLabel?: string;
-  };
-};
+  img: string;
+}
 
-const skills: Skill[] = [{
-  name: 'AWS MLS-C01',
-  details: {
-    issueOrganization: 'AWS',
-    issuedDate: 'Mar 15, 2025',
-    expiredDate: 'Mar 15, 2028',
+interface SkillCategory {
+  name: string;
+  experience?: string;
+  skills: SkillIcon[];
+}
+
+const skillCategories: SkillCategory[] = [
+  {
+    name: "Data Science & AI",
+    experience: "4+ Years XP",
+    skills: [
+      { name: "Python", img: "/img/skills/profile.png" },
+      { name: "TensorFlow", img: "/img/skills/profile.png" },
+      { name: "PyTorch", img: "/img/skills/profile.png" },
+      { name: "Scikit-Learn", img: "/img/skills/profile.png" },
+      { name: "R", img: "/img/skills/profile.png" }
+    ]
   },
-  imageSrc: '/img/certifications/AWS-Certified-Machine-Learning-Specialty_badge.png',
-  link: {
-    url: 'https://www.credly.com/badges/d8e21522-91ae-42bc-8987-497cdc9b02ea/linked_in_profile',
-  }
-}, {
-  name: 'AWS AIF-C01',
-  details: {
-    issueOrganization: 'AWS',
-    issuedDate: 'Nov 15, 2024',
-    expiredDate: 'Nov 15, 2027',
+  {
+    name: "Programming",
+    experience: "3+ Years XP",
+    skills: [
+      { name: "JavaScript", img: "/img/skills/profile.png" },
+      { name: "TypeScript", img: "/img/skills/profile.png" },
+      { name: "SQL", img: "/img/skills/profile.png" },
+      { name: "Java", img: "/img/skills/profile.png" },
+      { name: "C++", img: "/img/skills/profile.png" }
+    ]
   },
-  imageSrc: '/img/certifications/AWS-Certified-AI-Practitioner_badge.png',
-  link: {
-    url: 'https://www.credly.com/badges/84e29096-79a8-49b8-a312-b5c05ba49485'
-  }
-}, {
-  name: 'Microsoft AZ-900',
-  details: {
-    issueOrganization: 'Microsoft',
-    issuedDate: 'Sep 24, 2021',
-    expiredDate: 'No Expiration',
+  {
+    name: "Front End",
+    experience: "2+ Years XP",
+    skills: [
+      { name: "HTML", img: "/img/skills/profile.png" },
+      { name: "CSS", img: "/img/skills/profile.png" },
+      { name: "Vue.js", img: "/img/skills/profile.png" },
+      { name: "React", img: "/img/skills/profile.png" },
+      { name: "Tailwind CSS", img: "/img/skills/profile.png" }
+    ]
   },
-  imageSrc: '/img/certifications/microsoft-certified-fundamentals-badge.png',
-  link: {
-    url: 'https://drive.google.com/file/d/1VaBSxvMQ6j1ovJEBGD9hICFBiI-uwS1h/view?usp=sharing'
-  }
-}, {
-  name: 'Data Analysis Using Excel',
-  details: {
-    issueOrganization: 'SSE',
-    issuedDate: 'May 11, 2024',
-    expiredDate: 'No Expiration',
+  {
+    name: "BackEnd",
+    experience: "3+ Years XP",
+    skills: [
+      { name: "Node.js", img: "/img/skills/profile.png" },
+      { name: "Django", img: "/img/skills/profile.png" },
+      { name: "FastAPI", img: "/img/skills/profile.png" },
+      { name: "Flask", img: "/img/skills/profile.png" },
+      { name: "Express", img: "/img/skills/profile.png" }
+    ]
   },
-  imageSrc: '/img/certifications/SSE-Data-Analysis-Using-Excel-white.png',
-  link: {
-    url: 'https://drive.google.com/file/d/1eTeb9ayZaCo2YqC6kRV9-1LtchWyXfUY/view'
-  }
-}, {
-  name: 'Google Analytics',
-  details: {
-    issueOrganization: 'Google',
-    issuedDate: 'Apr 21, 2023',
-    expiredDate: 'Apr 21, 2024',
+  {
+    name: "Computing",
+    experience: "3+ Years XP",
+    skills: [
+      { name: "AWS", img: "/img/skills/profile.png" },
+      { name: "GCP", img: "/img/skills/profile.png" },
+      { name: "Docker", img: "/img/skills/profile.png" },
+      { name: "Linux", img: "/img/skills/profile.png" },
+      { name: "Git", img: "/img/skills/profile.png" }
+    ]
   },
-  imageSrc: '/img/certifications/google-analytics.png',
-  link: {
-    url: 'https://skillshop.credential.net/10c21cae-d1b7-40b0-9b34-1431111e39c3#acc.9lJLF3RH'
+  {
+    name: "Misc",
+    experience: "4+ Years XP",
+    skills: [
+      { name: "Jupyter", img: "/img/skills/profile.png" },
+      { name: "Agile/Scrum", img: "/img/skills/profile.png" },
+      { name: "Markdown", img: "/img/skills/profile.png" },
+      { name: "LaTeX", img: "/img/skills/profile.png" },
+      { name: "Postman", img: "/img/skills/profile.png" }
+    ]
   }
-}];
+];
 ---
 
-<div>
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-    {skills.map(skill =>
-      <div class="flex flex-col justify-between border border-gray-700 rounded-lg p-4 bg-black h-full">
-        <div>
-          <h3 class="text-xl font-semibold text-white mb-2">
-            {skill.name}
-          </h3>
-          <ul class="text-gray-400 list-none pl-0">
-            <li class="mb-1">• Issue Organization: {skill.details.issueOrganization}</li>
-            <li class="mb-1">• Issued Date: {skill.details.issuedDate}</li>
-            <li>• Expires Date: {skill.details.expiredDate}</li>
-          </ul>
-        </div>
-        
-        <div class="mt-4 flex justify-center">
-          {skill.imageSrc && skill.link && skill.link.url ? (
-            <a 
-              href={skill.link.url} 
-              target={skill.link.target || '_blank'} 
-              title={skill.link.title || `Visit ${skill.name}`}
-              class="transition-transform hover:scale-105"
-            >
-              <img
-                src={skill.imageSrc}
-                alt={skill.name}
-                class="rounded-md max-h-40 object-contain cursor-pointer filter grayscale hover:grayscale-0 transition-all duration-300"
-              />
-            </a>
-          ) : skill.imageSrc ? (
-            <img
-              src={skill.imageSrc}
-              alt={skill.name}
-              class="rounded-md max-h-40 object-contain filter grayscale hover:grayscale-0 transition-all duration-300"
-            />
-          ) : null}
-        </div>
+<div class="skills-container space-y-8">
+  {skillCategories.map((category) => (
+    <div class="category-section">
+      <div class="category-header flex items-center mb-4">
+        <h3 class="text-xl font-bold text-white border-b border-gray-700 pb-2">
+          {category.name}
+        </h3>
+        {category.experience && (
+          <span class="text-xs text-gray-400 ml-4">{category.experience}</span>
+        )}
       </div>
-    )}
-  </div>
+      
+      <div class="skills-grid grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
+        {category.skills.map((skill) => (
+          <div class="skill-item flex flex-col items-center">
+            <div class="icon-wrapper p-3 bg-gray-800 rounded-xl hover:bg-gray-700 transition-all duration-300 mb-2">
+              <img 
+                src={skill.img}
+                alt={skill.name} 
+                title={skill.name}
+                class="w-10 h-10 object-contain filter grayscale hover:grayscale-0 transition-all duration-300"
+              />
+            </div>
+            <span class="text-xs text-gray-400">{skill.name}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  ))}
 </div>
+
+<style>
+  .skills-container {
+    width: 100%;
+  }
+  
+  .icon-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+  }
+  
+  .icon-wrapper:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  }
+  
+  .icon-wrapper img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+  }
+  
+  .category-header {
+    width: 100%;
+    position: relative;
+  }
+  
+  .category-header h3 {
+    display: inline-block;
+  }
+  
+  @media (max-width: 640px) {
+    .skills-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .icon-wrapper {
+      width: 50px;
+      height: 50px;
+    }
+  }
+</style>
