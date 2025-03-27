@@ -1,0 +1,116 @@
+---
+interface Skill {
+  name: string;
+  details: {
+    issueOrganization: string;
+    issuedDate: string;
+    expiredDate: string;
+  };
+  imageSrc?: string;
+  link: {
+    url?: string;
+    target?: string;
+    title?: string;
+    buttonLabel?: string;
+  };
+};
+
+const skills: Skill[] = [{
+  name: 'AWS MLS-C01',
+  details: {
+    issueOrganization: 'AWS',
+    issuedDate: 'Mar 15, 2025',
+    expiredDate: 'Mar 15, 2028',
+  },
+  imageSrc: '/img/certifications/AWS-Certified-Machine-Learning-Specialty_badge.png',
+  link: {
+    url: 'https://www.credly.com/badges/d8e21522-91ae-42bc-8987-497cdc9b02ea/linked_in_profile',
+  }
+}, {
+  name: 'AWS AIF-C01',
+  details: {
+    issueOrganization: 'AWS',
+    issuedDate: 'Nov 15, 2024',
+    expiredDate: 'Nov 15, 2027',
+  },
+  imageSrc: '/img/certifications/AWS-Certified-AI-Practitioner_badge.png',
+  link: {
+    url: 'https://www.credly.com/badges/84e29096-79a8-49b8-a312-b5c05ba49485'
+  }
+}, {
+  name: 'Microsoft AZ-900',
+  details: {
+    issueOrganization: 'Microsoft',
+    issuedDate: 'Sep 24, 2021',
+    expiredDate: 'No Expiration',
+  },
+  imageSrc: '/img/certifications/microsoft-certified-fundamentals-badge.png',
+  link: {
+    url: 'https://drive.google.com/file/d/1VaBSxvMQ6j1ovJEBGD9hICFBiI-uwS1h/view?usp=sharing'
+  }
+}, {
+  name: 'Data Analysis Using Excel',
+  details: {
+    issueOrganization: 'SSE',
+    issuedDate: 'May 11, 2024',
+    expiredDate: 'No Expiration',
+  },
+  imageSrc: '/img/certifications/SSE-Data-Analysis-Using-Excel-white.png',
+  link: {
+    url: 'https://drive.google.com/file/d/1eTeb9ayZaCo2YqC6kRV9-1LtchWyXfUY/view'
+  }
+}, {
+  name: 'Google Analytics',
+  details: {
+    issueOrganization: 'Google',
+    issuedDate: 'Apr 21, 2023',
+    expiredDate: 'Apr 21, 2024',
+  },
+  imageSrc: '/img/certifications/google-analytics.png',
+  link: {
+    url: 'https://skillshop.credential.net/10c21cae-d1b7-40b0-9b34-1431111e39c3#acc.9lJLF3RH'
+  }
+}];
+---
+
+<div>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    {skills.map(skill =>
+      <div class="flex flex-col justify-between border border-gray-700 rounded-lg p-4 bg-black h-full">
+        <div>
+          <h3 class="text-xl font-semibold text-white mb-2">
+            {skill.name}
+          </h3>
+          <ul class="text-gray-400 list-none pl-0">
+            <li class="mb-1">• Issue Organization: {skill.details.issueOrganization}</li>
+            <li class="mb-1">• Issued Date: {skill.details.issuedDate}</li>
+            <li>• Expires Date: {skill.details.expiredDate}</li>
+          </ul>
+        </div>
+        
+        <div class="mt-4 flex justify-center">
+          {skill.imageSrc && skill.link && skill.link.url ? (
+            <a 
+              href={skill.link.url} 
+              target={skill.link.target || '_blank'} 
+              title={skill.link.title || `Visit ${skill.name}`}
+              class="transition-transform hover:scale-105"
+            >
+              <img
+                src={skill.imageSrc}
+                alt={skill.name}
+                class="rounded-md max-h-40 object-contain cursor-pointer filter grayscale hover:grayscale-0 transition-all duration-300"
+              />
+            </a>
+          ) : skill.imageSrc ? (
+            <img
+              src={skill.imageSrc}
+              alt={skill.name}
+              class="rounded-md max-h-40 object-contain filter grayscale hover:grayscale-0 transition-all duration-300"
+            />
+          ) : null}
+        </div>
+      </div>
+    )}
+  </div>
+</div>
