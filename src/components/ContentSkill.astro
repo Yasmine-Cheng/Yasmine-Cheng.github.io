@@ -13,103 +13,84 @@ interface SkillCategory {
 const skillCategories: SkillCategory[] = [
   {
     name: "Data Science & AI",
-    experience: "4+ Years XP",
-    skills: [
-      { name: "Python", img: "/img/skills/profile.png" },
-      { name: "TensorFlow", img: "/img/skills/profile.png" },
-      { name: "PyTorch", img: "/img/skills/profile.png" },
-      { name: "Scikit-Learn", img: "/img/skills/profile.png" },
-      { name: "R", img: "/img/skills/profile.png" }
-    ]
-  },
-  {
-    name: "Programming",
     experience: "3+ Years XP",
     skills: [
-      { name: "JavaScript", img: "/img/skills/profile.png" },
-      { name: "TypeScript", img: "/img/skills/profile.png" },
-      { name: "SQL", img: "/img/skills/profile.png" },
-      { name: "Java", img: "/img/skills/profile.png" },
-      { name: "C++", img: "/img/skills/profile.png" }
+      { name: "Python", img: "/img/skills/python.png" },
+      { name: "PyTorch", img: "/img/skills/pytorch.png" },
+      { name: "Tensorflow", img: "/img/skills/tensorflow.png" },
     ]
   },
   {
     name: "Front End",
-    experience: "2+ Years XP",
+    experience: "3+ Years XP",
     skills: [
-      { name: "HTML", img: "/img/skills/profile.png" },
-      { name: "CSS", img: "/img/skills/profile.png" },
-      { name: "Vue.js", img: "/img/skills/profile.png" },
-      { name: "React", img: "/img/skills/profile.png" },
-      { name: "Tailwind CSS", img: "/img/skills/profile.png" }
+      { name: "HTML", img: "/img/skills/html.png" },
+      { name: "CSS", img: "/img/skills/css.png" },
+      { name: "javascript", img: "/img/skills/js.png" },
     ]
   },
   {
     name: "BackEnd",
-    experience: "3+ Years XP",
+    experience: "N/A",
     skills: [
-      { name: "Node.js", img: "/img/skills/profile.png" },
-      { name: "Django", img: "/img/skills/profile.png" },
-      { name: "FastAPI", img: "/img/skills/profile.png" },
-      { name: "Flask", img: "/img/skills/profile.png" },
-      { name: "Express", img: "/img/skills/profile.png" }
+      { name: "MySQL", img: "/img/skills/mysql.png" },
+      { name: "Django", img: "/img/skills/django.png" },
+      { name: "Node.js", img: "/img/skills/nodejs.png" },
+      { name: "MongoDB", img: "/img/skills/mongodb.png" },
     ]
   },
   {
-    name: "Computing",
-    experience: "3+ Years XP",
+    name: "Cloud & DevOps",
+    experience: "N/A",
     skills: [
-      { name: "AWS", img: "/img/skills/profile.png" },
-      { name: "GCP", img: "/img/skills/profile.png" },
-      { name: "Docker", img: "/img/skills/profile.png" },
-      { name: "Linux", img: "/img/skills/profile.png" },
-      { name: "Git", img: "/img/skills/profile.png" }
-    ]
-  },
-  {
-    name: "Misc",
-    experience: "4+ Years XP",
-    skills: [
-      { name: "Jupyter", img: "/img/skills/profile.png" },
-      { name: "Agile/Scrum", img: "/img/skills/profile.png" },
-      { name: "Markdown", img: "/img/skills/profile.png" },
-      { name: "LaTeX", img: "/img/skills/profile.png" },
-      { name: "Postman", img: "/img/skills/profile.png" }
+      { name: "AWS", img: "/img/skills/aws.png" },
+      { name: "Azure", img: "/img/skills/azure.png" },
+      { name: "GCP", img: "/img/skills/gcp.png" },
+      { name: "Docker", img: "/img/skills/docker.png" },
+      { name: "Bash", img: "/img/skills/bash.png" },
+      { name: "git", img: "/img/skills/git.png" },
     ]
   }
 ];
 ---
 
-<div class="skills-container space-y-8">
-  {skillCategories.map((category) => (
-    <div class="category-section">
-      <div class="category-header flex items-center mb-4">
-        <h3 class="text-xl font-bold text-white border-b border-gray-700 pb-2">
-          {category.name}
-        </h3>
-        {category.experience && (
-          <span class="text-xs text-gray-400 ml-4">{category.experience}</span>
-        )}
-      </div>
-      
-      <div class="skills-grid grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
-        {category.skills.map((skill) => (
-          <div class="skill-item flex flex-col items-center">
-            <div class="icon-wrapper p-3 bg-gray-800 rounded-xl hover:bg-gray-700 transition-all duration-300 mb-2">
-              <img 
-                src={skill.img}
-                alt={skill.name} 
-                title={skill.name}
-                class="w-10 h-10 object-contain filter grayscale hover:grayscale-0 transition-all duration-300"
-              />
+<div class="skills-container">
+  <h2 class="text-xl font-bold text-white mb-6">Technical Skills</h2>
+  
+  <div class="space-y-8">
+    {skillCategories.map((category) => (
+      <div class="category-section">
+        <div class="flex items-center gap-2 mb-4">
+          <h3 class="text-lg font-semibold text-white">
+            {category.name}
+          </h3>
+          {category.experience && (
+            <span class="text-xs text-gray-400 border border-gray-700 rounded px-2 py-1">
+              {category.experience}
+            </span>
+          )}
+        </div>
+        
+        <div class="skills-grid grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
+          {category.skills.map((skill) => (
+            <div class="skill-item flex flex-col items-center">
+              <div class="icon-wrapper p-3 bg-gray-800 rounded-xl hover:bg-gray-700 transition-all duration-300 mb-2">
+                <img 
+                  src="/img/skills/profile.png"
+                  alt={skill.name} 
+                  title={skill.name}
+                  class="w-10 h-10 object-contain filter grayscale hover:grayscale-0 transition-all duration-300"
+                />
+              </div>
+              <span class="text-xs text-gray-400 text-center">{skill.name}</span>
             </div>
-            <span class="text-xs text-gray-400">{skill.name}</span>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
-    </div>
-  ))}
+    ))}
+  </div>
 </div>
+
 
 <style>
   .skills-container {

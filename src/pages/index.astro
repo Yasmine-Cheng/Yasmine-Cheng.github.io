@@ -57,12 +57,12 @@ import ContentSkill from '../components/ContentSkill.astro';
                         class="tab-radio"
                     />
 
-                    <!-- <input
+                    <input
                         type="radio"
                         id="tab4"
                         name="tabs"
                         class="tab-radio"
-                    /> -->
+                    />
 
                     <!-- Start: Tab bar -->
                     <div class="flex bg-black border-b border-gray-600 sticky top-0 z-10">
@@ -82,10 +82,10 @@ import ContentSkill from '../components/ContentSkill.astro';
                             contentName="certifications.md"
                         />
 
-                        <!-- <ContentLink
+                        <ContentLink
                             contentId="tab4"
                             contentName="skills.md"
-                        /> -->
+                        />
 
                     </div>
                     <!-- End: Tab bar -->
@@ -112,9 +112,9 @@ import ContentSkill from '../components/ContentSkill.astro';
                         <!-- End: Certifications content -->
 
                         <!-- Start: Skills content -->
-                        <!-- <div id="content4" class="tab-content">
+                        <div id="content4" class="tab-content">
                             <ContentSkill />
-                        </div> -->
+                        </div>
                         <!-- End: Skills content -->
 
                     </div>
@@ -185,12 +185,12 @@ import ContentSkill from '../components/ContentSkill.astro';
     }
 
     /* When tab4 is checked, show content4 and highlight its tab */
-    /* #tab4:checked ~ * #content4 {
+    #tab4:checked ~ * #content4 {
         @apply block opacity-100;
     }
 
     #tab4:checked ~ .flex .tab-link:nth-child(3) {
         @apply border-b-2 border-b-primary;
-    } */
+    }
 
 </style>
