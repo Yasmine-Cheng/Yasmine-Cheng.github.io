@@ -17,10 +17,9 @@ const skillCategories: SkillCategory[] = [
     skills: [
       { name: "Python", img: "/img/skills/python.png" },
       { name: "PyTorch", img: "/img/skills/pytorch.png" },
-      { name: "Tensorflow", img: "/img/skills/tensorflow.png" },
+      { name: "Tensorflow", img: "/img/skills/tensorflow.png"},
     ]
-  },
-  {
+  },{
     name: "Front End",
     experience: "3+ Years XP",
     skills: [
@@ -28,8 +27,7 @@ const skillCategories: SkillCategory[] = [
       { name: "CSS", img: "/img/skills/css.png" },
       { name: "javascript", img: "/img/skills/js.png" },
     ]
-  },
-  {
+  },{
     name: "BackEnd",
     experience: "N/A",
     skills: [
@@ -38,8 +36,7 @@ const skillCategories: SkillCategory[] = [
       { name: "Node.js", img: "/img/skills/nodejs.png" },
       { name: "MongoDB", img: "/img/skills/mongodb.png" },
     ]
-  },
-  {
+  },{
     name: "Cloud & DevOps",
     experience: "N/A",
     skills: [
@@ -76,7 +73,7 @@ const skillCategories: SkillCategory[] = [
             <div class="skill-item flex flex-col items-center">
               <div class="icon-wrapper p-3 bg-gray-800 rounded-xl hover:bg-gray-700 transition-all duration-300 mb-2">
                 <img 
-                  src="/img/skills/profile.png"
+                  src={skill.img} 
                   alt={skill.name} 
                   title={skill.name}
                   class="w-10 h-10 object-contain filter grayscale hover:grayscale-0 transition-all duration-300"
