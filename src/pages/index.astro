@@ -65,7 +65,7 @@ import ContentSkill from '../components/ContentSkill.astro';
                     />
 
                     <!-- Start: Tab bar -->
-                    <div class="flex bg-black border-b border-gray-600 sticky top-0 z-10">
+                    <div class="flex overflow-x-auto scrollbar-hide bg-black border-b border-gray-600 sticky top-0 z-10" id="tabBar">
 
                         <ContentLink
                             contentId="tab1"
@@ -139,7 +139,6 @@ import ContentSkill from '../components/ContentSkill.astro';
 </Layout>
 
 <style is:global>
-
     /* Hide the radio buttons */
     .tab-radio {
         @apply absolute opacity-0 pointer-events-none;
@@ -192,5 +191,53 @@ import ContentSkill from '../components/ContentSkill.astro';
     #tab4:checked ~ .flex .tab-link:nth-child(3) {
         @apply border-b-2 border-b-primary;
     }
+    
+    /* Hide scrollbar for tab bar */
+    .scrollbar-hide::-webkit-scrollbar {
+      display: none;
+    }
 
+    .scrollbar-hide {
+      -ms-overflow-style: none;  /* IE and Edge */
+      scrollbar-width: none;  /* Firefox */
+    }
 </style>
+
+<script>
+  // 等待文档完全加载
+  document.addEventListener('DOMContentLoaded', () => {
+    const tabInputs = document.querySelectorAll('.tab-radio');
+    const tabBar = document.getElementById('tabBar');
+    
+    // 为每个标签输入添加变更事件监听器
+    tabInputs.forEach((input) => {
+      input.addEventListener('change', () => {
+        if (input.checked) {
+          // 获取相应的标签链接
+          const tabId = input.id;
+          const tabLink = document.querySelector(`label[for="${tabId}"]`);
+          
+          if (tabLink && tabBar) {
+            // 计算滚动位置，使当前标签居中
+            const tabBarWidth = tabBar.offsetWidth;
+            const tabLinkLeft = tabLink.offsetLeft;
+            const tabLinkWidth = tabLink.offsetWidth;
+            
+            // 滚动到标签位置
+            tabBar.scrollTo({
+              left: tabLinkLeft - (tabBarWidth / 2) + (tabLinkWidth / 2),
+              behavior: 'smooth'
+            });
+          }
+        }
+      });
+    });
+    
+    // 初始滚动到当前选中的标签
+    const checkedInput = document.querySelector('.tab-radio:checked');
+    if (checkedInput) {
+      const event = new Event('change');
+      checkedInput.dispatchEvent(event);
+    }
+  });
+</script>
