@@ -127,16 +127,35 @@ const seoKeywords       = "Yasmine Cheng, Data Science, GAN text generation, Mac
         <meta name="keywords"    content={seoKeywords}>
 
         <!-- Google tag (gtag.js) -->
-        <!-- Google tag (gtag.js) -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-581JBKMSX0"></script>
+
+        <!-- Cookie同意設置 -->
         <script is:inline>
+        // Define dataLayer and the gtag function.
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
+        
+        // 為受限制地區設定預設同意聲明
+        gtag('consent', 'default', {
+            'ad_storage': 'denied',
+            'ad_user_data': 'denied',
+            'ad_personalization': 'denied',
+            'analytics_storage': 'denied',
+            'regions': ['TW', 'EU', 'UK', 'CA'] // 替換為您需要限制的地區代碼
+        });
+        
+        // 為所有其他地區設定預設同意聲明
+        gtag('consent', 'default', {
+            'ad_storage': 'granted',
+            'ad_user_data': 'granted',
+            'ad_personalization': 'granted',
+            'analytics_storage': 'granted'
+        });
+        
+        // 初始化Google Analytics
         gtag('js', new Date());
         gtag('config', 'G-581JBKMSX0');
         </script>
-
-
     </head>
 
     <body class="min-h-[100vh] flex items-center justify-center p-4">
