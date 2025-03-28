@@ -59,7 +59,14 @@ const skillCategories: SkillCategory[] = [
       <div class="category-section">
         <div class="flex items-center gap-2 mb-4">
           <h3 class="text-lg font-semibold text-white">
-            {category.name}
+            {category.name === "Data Science & AI" ? (
+              <>
+                <span class="hidden md:inline">Data Science & AI</span>
+                <span class="inline md:hidden">DS & AI</span>
+              </>
+            ) : (
+              category.name
+            )}
           </h3>
           {category.experience && (
             <span class="text-xs text-gray-400 border border-gray-700 rounded px-2 py-1">
@@ -67,8 +74,8 @@ const skillCategories: SkillCategory[] = [
             </span>
           )}
         </div>
-        
-        <div class="skills-grid grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4">
+
+        <div class="skills-grid grid grid-cols-2 sm:grid-cols-2 md:grid-cols-6 gap-4">
           {category.skills.map((skill) => (
             <div class="skill-item flex flex-col items-center">
               <div class="icon-wrapper p-3 bg-gray-300 rounded-xl hover:bg-gray-200 transition-all duration-300 mb-2">
@@ -130,6 +137,30 @@ const skillCategories: SkillCategory[] = [
     .icon-wrapper {
       width: 50px;
       height: 50px;
+    }
+  }
+  
+  /* 新增: 針對小於657px的屏幕 */
+  @media (max-width: 657px) {
+    .skills-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px; /* 增加間距 */
+    }
+    
+    .icon-wrapper {
+      width: 70px;  /* 增大尺寸 */
+      height: 70px; /* 增大尺寸 */
+      padding: 10px; /* 增加內邊距 */
+    }
+    
+    .icon-wrapper img {
+      width: 50px;  /* 增大圖標 */
+      height: 50px; /* 增大圖標 */
+    }
+    
+    .skill-item {
+      scale: 1.1; /* 整體放大 */
+      margin-bottom: 5px; /* 增加底部間距 */
     }
   }
 </style>
