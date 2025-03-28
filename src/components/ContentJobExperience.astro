@@ -2,11 +2,12 @@
 interface JobExperience {
   company: string;
   logo: string;
-  website: string; // 新增網站連結屬性
+  website: string; 
   position: string;
   period: string;
   teams: {
     name: string;
+    shortName?: string; // 新增短名稱屬性
     responsibilities: string[];
   }[];
   techStack: string;
@@ -16,7 +17,7 @@ const experiences: JobExperience[] = [
   {
     company: "Advantech Co., Ltd.",
     logo: "/img/jobs/advantech.png",
-    website: "https://www.advantech.com/zh-tw", // 填入公司網站
+    website: "https://www.advantech.com/zh-tw",
     position: "IT AI Intern",
     period: "Jun. 2024 - Now",
     teams: [
@@ -34,7 +35,7 @@ const experiences: JobExperience[] = [
   {
     company: "Merkle Taiwan",
     logo: "/img/jobs/merkle_taiwan.png",
-    website: "https://www.merkle.com/zh.html", // 填入公司網站
+    website: "https://www.merkle.com/zh.html",
     position: "(PT) Data Engineer Intern",
     period: "Aug. 2021 - Jun. 2023",
     teams: [
@@ -51,12 +52,13 @@ const experiences: JobExperience[] = [
   {
     company: "amiko AI",
     logo: "/img/jobs/amiko.png",
-    website: "https://www.amiko.net", // 填入公司網站
+    website: "https://www.amiko.net",
     position: "AI Data Processing Intern",
     period: "Dec. 2021 - Jul. 2021",
     teams: [
       {
         name: "Research and Development Department",
+        shortName: "R&D Department", // 添加短名稱
         responsibilities: [
           "Text Data Processing and Data Annotation",
           "Assist in AI Model Development, Training, and Validation",
@@ -99,7 +101,14 @@ const experiences: JobExperience[] = [
           {job.teams.map((team) => (
             <div class="team-section mb-4">
               <div class="text-white mb-2">
-                <div class="font-semibold">{team.name}</div>
+                <div class="font-semibold">
+                  {team.shortName ? (
+                    <>
+                      <span class="hidden sm-custom:inline">{team.name}</span>
+                      <span class="inline sm-custom:hidden">{team.shortName}</span>
+                    </>
+                  ) : team.name}
+                </div>
                 <div class="text-sm text-gray-200 mt-1">
                   <span class="block">{job.position}</span>
                   <span class="block">{job.period}</span>
@@ -184,6 +193,25 @@ const experiences: JobExperience[] = [
   
   .job-entry:last-child .job-content {
     border-bottom: none;
+  }
+  
+  /* 自定義媒體查詢斷點 */
+  @media (min-width: 462px) {
+    .sm-custom\:inline {
+      display: inline !important;
+    }
+    .sm-custom\:hidden {
+      display: none !important;
+    }
+  }
+  
+  @media (max-width: 461px) {
+    .hidden.sm-custom\:inline {
+      display: none !important;
+    }
+    .inline.sm-custom\:hidden {
+      display: inline !important;
+    }
   }
 </style>
 
