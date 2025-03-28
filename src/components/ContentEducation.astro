@@ -1,0 +1,167 @@
+---
+interface Education {
+  name: string;
+  details: {
+    degree: string;
+    period: string;
+    activities?: {
+      name: string;
+      url?: string;
+    }[];
+    honors?: string[];
+  };
+  imageSrc?: string;
+  link?: {
+    url?: string;
+    target?: string;
+    title?: string;
+  };
+};
+
+const educations: Education[] = [{
+  name: 'Soochow University',
+  details: {
+    degree: "Master's Degree, Data Science",
+    period: 'Sep. 2023 - Now',
+    activities: [
+      {
+        name: 'NLP Lab',
+        url: 'https://nlp.bigdata.scu.edu.tw' // 請替換為正確的NLP Lab連結
+      }
+    ]
+  },
+  imageSrc: '/img/educations/scu.png',
+  link: {
+    url: 'https://www.scu.edu.tw/',
+    target: '_blank'
+  }
+}, {
+  name: 'Soochow University',
+  details: {
+    degree: "Bachelor's degree, Big Data",
+    period: 'Sep. 2019 - Jun. 2023',
+    activities: [
+      {
+        name: 'Data Lab',
+        url: 'https://www.facebook.com/dlab.taiwan/?locale=zh_TW' // 請替換為正確的Data Lab連結
+      }
+    ],
+    honors: [
+      'Outstanding Graduate of Academic Year 2022-2023'
+    ]
+  },
+  imageSrc: '/img/educations/scu.png',
+  link: {
+    url: 'https://www.scu.edu.tw/',
+    target: '_blank'
+  }
+}, {
+  name: 'Soochow University',
+  details: {
+    degree: 'Program, Financial Technology',
+    period: 'Sep. 2020 - Jun. 2022'
+  },
+  imageSrc: '/img/educations/scu.png',
+  link: {
+    url: 'https://www.scu.edu.tw/',
+    target: '_blank'
+  }
+}, {
+  name: 'New Taipei Municipal Bei Da High School',
+  details: {
+    degree: 'Social Sciences track',
+    period: 'Sep. 2016 - Jun. 2019',
+    activities: [
+      {
+        name: 'Dance Club',
+        url: 'https://www.instagram.com/bddc_10th/'
+      }
+    ]
+  },
+  imageSrc: '/img/educations/bdhs.png', // 請放入北大高中的校徽
+  link: {
+    url: 'https://www.pths.ntpc.edu.tw/', // 北大高中網站
+    target: '_blank'
+  }
+}];
+---
+
+<div>
+  <div class="grid grid-cols-1 gap-4">
+    {educations.map(education =>
+      <div class="flex flex-col justify-between border border-gray-700 rounded-lg p-4 bg-black h-full">
+        <div class="flex items-center justify-between">
+          <div class="flex-grow pr-4">
+            <h3 class="text-xl font-semibold text-white mb-2">
+              {education.link?.url ? (
+                <a 
+                  href={education.link.url} 
+                  target={education.link.target || '_blank'} 
+                  class="hover:text-primary hover:underline transition-colors"
+                >
+                  {education.name}
+                </a>
+              ) : education.name}
+            </h3>
+            
+            <ul class="text-gray-400 list-none pl-0 space-y-2">
+              <li class="font-medium text-primary">{education.details.degree}</li>
+              <li>{education.details.period}</li>
+              
+              {education.details.activities && education.details.activities.length > 0 && (
+                <li>
+                  <span class="block mb-1">Activities:</span>
+                  <ul class="list-disc pl-5 space-y-1">
+                    {education.details.activities.map(activity => (
+                      <li>
+                        {activity.url ? (
+                          <a 
+                            href={activity.url} 
+                            target="_blank" 
+                            class="text-gray-400 hover:text-primary hover:underline transition-colors"
+                          >
+                            {activity.name}
+                          </a>
+                        ) : activity.name}
+                      </li>
+                    ))}
+                  </ul>
+                </li>
+              )}
+              
+              {education.details.honors && education.details.honors.length > 0 && (
+                <li>
+                  <span class="block mb-1">Honors:</span>
+                  <ul class="list-disc pl-5 space-y-1">
+                    {education.details.honors.map(honor => (
+                      <li>{honor}</li>
+                    ))}
+                  </ul>
+                </li>
+              )}
+            </ul>
+          </div>
+          
+          {education.imageSrc && (
+            <div class="flex-shrink-0 school-logo">
+              <img
+                src={education.imageSrc}
+                alt={`${education.name} logo`}
+                class="w-24 h-24 object-contain rounded-md bg-white p-1"
+              />
+            </div>
+          )}
+        </div>
+      </div>
+    )}
+  </div>
+</div>
+
+<style>
+  /* 自定義媒體查詢，在螢幕寬度小於545px時隱藏校徽 */
+  @media (max-width: 545px) {
+    .school-logo {
+      display: none;
+    }
+  }
+</style>
