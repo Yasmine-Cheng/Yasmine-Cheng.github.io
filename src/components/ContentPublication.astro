@@ -1,0 +1,308 @@
+---
+interface Publication {
+  title: string;
+  authors: string[];
+  institution: string;
+  abstract: string;
+  link?: string;
+}
+
+const publications: Publication[] = [
+  {
+    title: "SCUNLP-1 at the NTCIR-17 FinArg-1 Task: Enhancing Classification Prediction through Feature Generation Based on ChatGPT",
+    authors: [
+      "Ya-Mien Cheng",
+    ],
+    institution: "Soochow University",
+    abstract: "This paper will provide a comprehensive overview of our participation in two shared tasks of NTCIR17 FinArg-1: Argument-based Sentiment Analysis (Earning Calls), including Argument Unit Classification (ECCAC) and Argument Relation Detection and Classification (ECCAR). We submitted three rounds of predictions for each task during the final evaluation. The study was to determine whether a sentence acted as a premise and predict its sentiment as none, support, or attack. Our proposed solution involves gathering insights through conversations with large language models. In both tasks, we categorized questions into two distinct types: those directly addressing classification categories and those about assessing financial market relevance. These questions were approached from three perspectives: the general public, professional financial market investors, or without specifying a particular view. These insights are then integrated into the features for model prediction. The experimentation mainly consisted of two scenarios: using only the original data and employing both the original data and ChatGPT’s answers during training. Ultimately, we discovered that incorporating ChatGPT’s responses alongside the original data yielded the highest scores in both tasks, surpassing other experimental configurations that relied solely on either the original data or ChatGPT alone. In the task of ECCAC, a 71.07% Macro-F1 was attained, while ECCAR yielded a score of 54.60% in Macro-F1. Although the performance in the ECCAC task did not significantly surpass other versions, it remained the most successful among the submitted versions.",
+    link: "https://research.nii.ac.jp/ntcir/workshop/OnlineProceedings17/pdf/ntcir/10-NTCIR17-FINARG-ChengY.pdf"
+  },
+  {
+    title: "The Relevance Identification Between Housing Rental Texts And Legal Provisions",
+    authors: [
+      "Min-Chin Ho",
+      "Ya-Mien Cheng"
+    ],
+    institution: "Soochow University",
+    abstract: "In recent years, the housing market in Taiwan has seen soaring prices due to various factors, leading many people to choose renting over buying. However, many renters are unfamiliar with the relevant regulations and details when signing rental agreements. Combined with a lack of thorough review or overlooking complex contract terms, these factors often lead to disputes. This study aims to develop an online housing lease identification system that allows tenants to assess whether their lease contracts have issues. It will also provide information on legal provisions that can be used in case of disputes during the rental process, helping renters reduce misunderstandings about legal regulations and contract terms.In this research, five models were used, and four influencing factors were selected for model training and evaluation. Among them, the distilbert-base-multilingual-cased model performed the best with a macro F1 score of 0.14 and a weighted F1 score of 0.21, without considering any influencing factors. However, the overall performance of all models on this research dataset was generally poor. The results suggest that the identification of relevant legal provisions for lease issues still requires the establishment of a larger and more diverse corpus of text data.",
+    link: "https://aclanthology.org/2023.rocling-1.32.pdf"
+  },
+  {
+    title: "DeepEye: Design and Implementation of Embedded System for Environment Perception and Navigation of Visually Impaired People",
+    authors: [
+      "Shou-Hsuan Chen",
+      "Hsing-Yi Chen",
+      "Ya-Mien Cheng",
+      "Ru-Ying Li",
+      "Pei-Xuan Wang",
+      "Yu-Hao Teng"
+    ],
+    institution: "Soochow University",
+    abstract: "The visually impaired people often use guide sticks, guide dogs, or ask people to know their direction when walking outside. However, there are many guide bricks not only fail to help them, but also guide them to obstacles and wrong directions. Therefore, we apply deep learning algorithms for image segmentation and recognition of different objects, and automatically estimate the distance with low-cost, lightweight embedded devices. We also provide voice service to help visually impaired people understand the surrounding obstacles, so that they can reduce the risk of collision and find the correct and safe direction. Our approach assists the environment perception and guidance of the visually impaired people.",
+    link: "https://ieeexplore.ieee.org/document/10226719"
+  }
+];
+---
+
+<div class="publications-container">
+  <!-- Publications -->
+  <div class="publications-wrapper">
+    {publications.map((publication, index) => (
+      <div class="publication-item" id={`publication-${index}`} style={index === 0 ? "" : "display: none;"}>
+        <!-- Top and bottom border lines -->
+        {/* <div class="border-line"></div> */}
+        
+        <!-- Title -->
+        <h2 class="publication-title">{publication.title}</h2>
+        
+        {/* <div class="border-line"></div> */}
+        
+        <!-- Authors section -->
+        <div class={`authors-section ${publication.authors.length <= 3 ? 'authors-few' : ''}`}>
+          {publication.authors.map((author) => (
+            <span class="author-name">{author}</span>
+          ))}
+        </div>
+
+        <!-- Institution -->
+        <div class="institution">
+          {publication.institution}
+        </div>
+        
+        <!-- Abstract -->
+        <div class="abstract-container">
+          <h2 class="abstract-heading">Abstract</h2>
+          <p class="abstract-text">{publication.abstract}</p>
+          
+          {publication.link && (
+            <div class="publication-link">
+              <a href={publication.link} target="_blank" rel="noopener noreferrer" class="text-primary hover:underline">
+                View publication
+              </a>
+            </div>
+          )}
+        </div>
+      </div>
+    ))}
+  </div>
+  
+  <!-- Navigation buttons - moved to bottom -->
+  <div class="publication-nav">
+    {publications.map((pub, index) => (
+      <button 
+        class="pub-nav-button" 
+        data-index={index}
+        aria-label={`View publication ${index + 1}`}
+      >
+        {index + 1}
+      </button>
+    ))}
+  </div>
+</div>
+
+<style>
+  .publications-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 80vh; /* 固定高度，防止整个容器滚动 */
+  }
+  
+  .publications-wrapper {
+    width: 100%;
+    max-width: 900px;
+    flex-grow: 1;
+    overflow: hidden; /* 防止滚动 */
+  }
+  
+  .publication-item {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .border-line {
+    width: 100%;
+    height: 2px;
+    background-color: #333;
+    margin: 1rem 0;
+  }
+  
+  .publication-title {
+    font-size: 1.6rem;
+    font-weight: bold;
+    text-align: center;
+    color: white;
+    padding: 1rem 0;
+  }
+  
+  /* 當螢幕尺寸小於440px時，縮小標題字體 */
+  @media (max-width: 440px) {
+    .publication-title {
+      font-size: 0.8rem;
+      padding: 0.75rem 0;
+    }
+  }
+  
+  /* 修改作者部分的样式 - 使用flexbox代替grid */
+  .authors-section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 600px;
+    margin: 1rem auto;
+    gap: 0.75rem;
+    row-gap: 0.5rem;
+  }
+  
+  .authors-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  
+  /* 设置作者名称的宽度，确保每行最多三个 */
+  .author-name {
+    color: white;
+    font-size: 1.1rem;
+    text-align: center;
+    flex: 0 0 calc(33.333% - 1rem); /* 每行3个，减去间距 */
+    max-width: calc(33.333% - 1rem);
+  }
+  
+  /* 响应式调整 */
+  @media (max-width: 640px) {
+    .author-name {
+      flex: 0 0 calc(50% - 0.75rem); /* 每行2个 */
+      max-width: calc(50% - 0.75rem);
+    }
+  }
+  
+  @media (max-width: 440px) {
+    .author-name {
+      flex: 0 0 100%; /* 每行1个 */
+      max-width: 100%;
+    }
+  }
+  
+  /* 特殊处理：当只有1-3个作者时 */
+  .authors-few {
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+  }
+  
+  .authors-few .author-name {
+    /* 移除最大宽度限制，让它们自然居中 */
+    flex: 0 0 auto;
+    max-width: none;
+    padding: 0 0.75rem;
+  }
+  
+  .institution {
+    text-align: center;
+    color: #ddd;
+    font-size: 1rem;
+    margin-bottom: 2rem;
+  }
+  
+  .abstract-container {
+    margin-top: 0rem;
+    overflow: hidden;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .abstract-heading {
+    text-align: center;
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 0.5rem;
+  }
+  
+  .abstract-text {
+    color: #ddd;
+    text-align: justify;
+    line-height: 1.5;
+    font-size: 1rem;
+    max-height: 35vh;
+    overflow: hidden;
+    position: relative;
+    padding-right: 1rem;
+  }
+  
+  .abstract-text::after {
+    content: "...";
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    padding: 0 0.5rem;
+    background-color: black;
+  }
+  
+  .publication-link {
+    margin-top: 1rem;
+    text-align: center;
+  }
+  
+  .publication-nav {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .pub-nav-button {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    background-color: #111;
+    border: 1px solid #555;
+    color: #fff;
+    font-size: 0.7rem;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  
+  .pub-nav-button:hover, .pub-nav-button.active {
+    background-color: #F43F5E;
+    border-color: #F43F5E;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const buttons = document.querySelectorAll('.pub-nav-button');
+    const publications = document.querySelectorAll('.publication-item');
+    
+    // Set the first button as active initially
+    buttons[0].classList.add('active');
+    
+    // Add click event listeners to each button
+    buttons.forEach(button => {
+      button.addEventListener('click', () => {
+        const index = button.getAttribute('data-index');
+        
+        // Hide all publications
+        publications.forEach(pub => {
+          pub.style.display = 'none';
+        });
+        
+        // Show the selected publication
+        document.getElementById(`publication-${index}`).style.display = 'flex';
+        
+        // Update active button
+        buttons.forEach(btn => {
+          btn.classList.remove('active');
+        });
+        button.classList.add('active');
+      });
+    });
+  });
+</script>

@@ -10,7 +10,8 @@ import ContentProjects from '../components/ContentProjects.astro';
 import ContentCertification from '../components/ContentCertification.astro';
 import ContentSkill from '../components/ContentSkill.astro';
 import ContentJobExperience from '../components/ContentJobExperience.astro';
-import ContentEducation from '../components/ContentEducation.astro'
+import ContentEducation from '../components/ContentEducation.astro';
+import ContentPublication from '../components/ContentPublication.astro';
 ---
 
 <Layout>
@@ -80,6 +81,13 @@ import ContentEducation from '../components/ContentEducation.astro'
                         class="tab-radio"
                     />
 
+                    <input
+                        type="radio"
+                        id="tab7"
+                        name="tabs"
+                        class="tab-radio"
+                    />
+
                     <!-- Start: Tab bar -->
                     <div class="flex overflow-x-auto scrollbar-hide bg-black border-b border-gray-600 sticky top-0 z-10" id="tabBar">
 
@@ -111,6 +119,11 @@ import ContentEducation from '../components/ContentEducation.astro'
                         <ContentLink
                             contentId="tab6"
                             contentName="education.md"
+                        />
+
+                        <ContentLink
+                            contentId="tab7"
+                            contentName="publication.md"
                         />
 
                     </div>
@@ -154,6 +167,12 @@ import ContentEducation from '../components/ContentEducation.astro'
                             <ContentEducation />
                         </div>
                         <!-- End: Education content -->
+
+                        <!-- Start: Publication content -->
+                        <div id="content7" class="tab-content">
+                            <ContentPublication />
+                        </div>
+                        <!-- End: Publication content -->
 
                     </div>
                     <!-- End: Tab content -->
@@ -247,6 +266,16 @@ import ContentEducation from '../components/ContentEducation.astro'
     #tab6:checked ~ .flex .tab-link:nth-child(5) {
         @apply border-b-2 border-b-primary;
     }
+
+    /* When tab7 is checked, show content7 and highlight its tab */
+    #tab7:checked ~ * #content7 {
+        @apply block opacity-100;
+    }
+
+    #tab7:checked ~ .flex .tab-link:nth-child(6) {
+        @apply border-b-2 border-b-primary;
+    }
+
 
     /* Hide scrollbar for tab bar */
     .scrollbar-hide::-webkit-scrollbar {
