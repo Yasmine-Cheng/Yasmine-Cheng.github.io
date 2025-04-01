@@ -289,40 +289,49 @@ import ContentPublication from '../components/ContentPublication.astro';
 </style>
 
 <script>
-  // 等待文档完全加载
-  document.addEventListener('DOMContentLoaded', () => {
-    const tabInputs = document.querySelectorAll('.tab-radio');
+    document.addEventListener('DOMContentLoaded', () => {
+    const tabInputs = document.querySelectorAll<HTMLInputElement>('.tab-radio');
     const tabBar = document.getElementById('tabBar');
     
-    // 为每个标签输入添加变更事件监听器
+    // 為每個標籤輸入添加變更事件監聽器
     tabInputs.forEach((input) => {
-      input.addEventListener('change', () => {
+        input.addEventListener('change', () => {
         if (input.checked) {
-          // 获取相应的标签链接
-          const tabId = input.id;
-          const tabLink = document.querySelector(`label[for="${tabId}"]`);
-          
-          if (tabLink && tabBar) {
-            // 计算滚动位置，使当前标签居中
+            // 獲取相應的標籤鏈接
+            const tabId = input.id;
+            const tabLink = document.querySelector(`label[for="${tabId}"]`) as HTMLElement;
+            
+            // 獲取標籤名稱
+            const tabLabel = document.querySelector(`label[for="${tabId}"] h2`)?.textContent || '';
+            
+            // 發送虛擬頁面瀏覽事件
+            // @ts-ignore
+            gtag('config', 'G-581JBKMSX0', {
+            'page_title': `Yasmine Cheng - ${tabLabel}`,
+            'page_path': `/${tabLabel.replace('.', '_')}`
+            });
+            
+            if (tabLink && tabBar) {
+            // 計算滾動位置，使當前標籤居中
             const tabBarWidth = tabBar.offsetWidth;
             const tabLinkLeft = tabLink.offsetLeft;
             const tabLinkWidth = tabLink.offsetWidth;
             
-            // 滚动到标签位置
+            // 滾動到標籤位置
             tabBar.scrollTo({
-              left: tabLinkLeft - (tabBarWidth / 2) + (tabLinkWidth / 2),
-              behavior: 'smooth'
+                left: tabLinkLeft - (tabBarWidth / 2) + (tabLinkWidth / 2),
+                behavior: 'smooth'
             });
-          }
+            }
         }
-      });
+        });
     });
     
-    // 初始滚动到当前选中的标签
-    const checkedInput = document.querySelector('.tab-radio:checked');
+    // 初始滾動到當前選中的標籤
+    const checkedInput = document.querySelector<HTMLInputElement>('.tab-radio:checked');
     if (checkedInput) {
-      const event = new Event('change');
-      checkedInput.dispatchEvent(event);
+        const event = new Event('change');
+        checkedInput.dispatchEvent(event);
     }
-  });
+    });
 </script>
