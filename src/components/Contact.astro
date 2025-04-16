@@ -3,6 +3,32 @@ import Socials from './Socials.astro';
 ---
 
 <div>
+    <!-- Start: PDF CV Button -->
+    <div class="flex justify-center mb-4">
+        <button 
+            id="open-cv-btn"
+            class="px-6 py-2 bg-black text-primary border border-primary rounded-lg hover:bg-primary hover:text-black transition-colors duration-300 flex items-center gap-2 font-medium"
+        >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="16" y1="13" x2="8" y2="13"></line>
+                <line x1="16" y1="17" x2="8" y2="17"></line>
+                <polyline points="10 9 9 9 8 9"></polyline>
+            </svg>
+            View CV
+        </button>
+    </div>
+
+    <!-- PDF Modal Container -->
+    <div id="pdf-modal" class="hidden fixed inset-0 z-50 items-center justify-center p-4 bg-black bg-opacity-80 transition-opacity duration-300">
+        <div class="relative w-full max-w-4xl h-[90vh] bg-white rounded-lg shadow-xl">
+            <div class="pdf-container h-full">
+                <iframe id="pdf-iframe" class="w-full h-full rounded-lg" src="" frameborder="0"></iframe>
+            </div>
+        </div>
+    </div>
+    
     <!-- Start: Terminal -->
     <div class="mt-6 bg-black rounded-lg p-4 border border-gray-600 text-xs">
         <div class="flex items-center mb-2">
@@ -79,6 +105,71 @@ import Socials from './Socials.astro';
                 });
             }, 1500);
         });
+
+        // PDF Modal functionality
+        const openButton = document.getElementById('open-cv-btn');
+        const modalElement = document.getElementById('pdf-modal');
+        const pdfIframeElement = document.getElementById('pdf-iframe');
+        
+        // 確保所有元素都存在
+        if (openButton && modalElement && pdfIframeElement) {
+            const modal = modalElement as HTMLElement;
+            const pdfIframe = pdfIframeElement as HTMLIFrameElement;
+            
+            // PDF 路徑，請確保這個路徑是正確的
+            const pdfPath = '/cv/Yasmine_Cheng_CV.pdf';
+            
+            // 按鈕點擊打開 Modal
+            openButton.addEventListener('click', () => {
+                // 設置 iframe 源
+                pdfIframe.src = pdfPath;
+                
+                // 顯示 modal
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+                
+                // 為了動畫效果先設置透明度為0
+                modal.style.opacity = '0';
+                
+                // 強制重繪後增加不透明度
+                setTimeout(() => {
+                    modal.style.opacity = '1';
+                }, 10);
+                
+                // 阻止滾動
+                document.body.style.overflow = 'hidden';
+            });
+            
+            // 點擊背景關閉 Modal
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    // 使用內聯匿名函數而不是調用外部函數
+                    modal.style.opacity = '0';
+                    
+                    setTimeout(() => {
+                        modal.classList.add('hidden');
+                        modal.classList.remove('flex');
+                        pdfIframe.src = '';
+                        document.body.style.overflow = '';
+                    }, 300);
+                }
+            });
+            
+            // 鍵盤 ESC 關閉 Modal
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
+                    // 同樣使用內聯匿名函數
+                    modal.style.opacity = '0';
+                    
+                    setTimeout(() => {
+                        modal.classList.add('hidden');
+                        modal.classList.remove('flex');
+                        pdfIframe.src = '';
+                        document.body.style.overflow = '';
+                    }, 300);
+                }
+            });
+        }
     });
 </script>
 
@@ -88,5 +179,15 @@ import Socials from './Socials.astro';
     }
     .hidden {
         display: none;
+    }
+    
+    /* PDF Modal animations */
+    #pdf-modal {
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+    
+    #pdf-modal.flex {
+        display: flex !important;
     }
 </style>
